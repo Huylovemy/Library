@@ -2386,43 +2386,4 @@ function Bearlib:MakeWindow(Configs)
 	MinimizeButton.Activated:Connect(Window.MinimizeBtn)
 	return Window
 end
-
-local ToggleGui = Instance.new("ScreenGui")
-ToggleGui.Name = "BearHub_Toggle_Square"
-ToggleGui.Parent = game.CoreGui
-
-local ToggleBtn = Instance.new("ImageButton")
-ToggleBtn.Name = "ToggleButton"
-ToggleBtn.Size = UDim2.new(0, 25, 0, 25)
-ToggleBtn.Position = UDim2.new(0.10, 0, 0.10, 0)
-ToggleBtn.Image = "rbxassetid://134852113716171" 
-ToggleBtn.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ToggleBtn.BackgroundTransparency = 0.5
-ToggleBtn.Active = true 
-ToggleBtn.Draggable = true 
-ToggleBtn.Parent = ToggleGui
-
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0.25, 0) 
-UICorner.Parent = ToggleBtn
-
-local UIStroke = Instance.new("UIStroke")
-UIStroke.Thickness = 1/1
-UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-UIStroke.Parent = ToggleBtn
-
-task.spawn(function()
-    while task.wait() do
-        local hue = tick() % 5 / 5
-        local color = Color3.fromHSV(hue, 1, 1) 
-        UIStroke.Color = color
-    end
-end)
-
-ToggleBtn.MouseButton1Click:Connect(function()
-    pcall(function()
-        Window:Minimize()
-    end)
-end)
-
 return Bearlib
